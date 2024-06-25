@@ -23,6 +23,4 @@ const RegistroVentas = connection.define('RegistroVentas', {
     }
 });
 
-module.exports = {
-    RegistroVentas
-}
+module.exports = RegistroVentas;

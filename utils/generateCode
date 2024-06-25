@@ -1,0 +1,21 @@
+const generateUUID = () => {
+  const randomBytes = new Uint8Array(16);
+  crypto.getRandomValues(randomBytes);
+
+  const uuid = [];
+  for (let i = 0; i < 16; i++) {
+    uuid.push(randomBytes[i].toString(16).padStart(2, '0'));
+  }
+
+  uuid[6] = uuid[6].replace(/^./, '4'); // versión 4 UUID
+  uuid[8] = uuid[8].replace(/^./, uuid[8][0] & 0x3 | 0x8); // variant RFC4122
+
+  return `${uuid.slice(0, 4).join('')}-${uuid.slice(4, 6).join('')}-${uuid.slice(6, 8).join('')}-${uuid.slice(8, 10).join('')}-${uuid.slice(10, 16).join('')}`;
+}
+
+//const uuid = generateUUID();
+//console.log(uuid); // Imprime un UUID como "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"
+
+module.exports = {
+    generateUUID
+}

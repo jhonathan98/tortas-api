@@ -4,20 +4,21 @@ const ObtenerRegistrosVentas = async (req,res) => {
     try {
         const registros = await registroVentas.getAll();
         
-        if(registros){
-            console.log(registros);
+        if(registros){            
             res.status(200).json({
                 mensaje:"Datos encontrados",
                 data:registros
             })
         }else{
-            res.status(404).json({mensaje:"Sin datos"})
+            res.status(201).json({
+                mensaje:"Sin datos",
+                data:[]
+            })
         }
-    } catch (error) {
-        console.log(error)
+    } catch (error) {   console.log(error)     
         res.status(500).json({
             mensaje:"Error al obtener todos los registros",
-            data:[]
+            error
         })        
     }
 }
