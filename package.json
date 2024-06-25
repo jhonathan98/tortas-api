@@ -1,0 +1,32 @@
+{
+  "name": "tortasgordo",
+  "version": "1.0.0",
+  "description": "api de sistema inventarios tortas el gordo",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node --es-module-specifier-resolution=node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jhonathan98/tortas-api.git"
+  },
+  "keywords": [
+    "tortas-api"
+  ],
+  "author": "jhonathanCG",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jhonathan98/tortas-api/issues"
+  },
+  "homepage": "https://github.com/jhonathan98/tortas-api#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "nodemon": "^3.1.4",
+    "pg": "^8.12.0",
+    "sequelize": "^6.37.3"
+  }
+}
