@@ -1,8 +1,7 @@
 const { Usuarios } = require("../models")
 
 
-const CreateUser = (user) => {
-    console.log(user)
+const CreateUser = (user) => {    
     Usuarios.create(user);
 }
 
@@ -14,14 +13,18 @@ const getUserById = (id) => {
     return Usuarios.findByPk(id);
 }
 
-const getUserByUser = (user) => {   
-    console.log("datosUsusario:",user) 
+const getUserByUser = (user) => {    
     return Usuarios.findOne({where: {usuario:user} });
+}
+
+const getUserXuserpass = (user,pass) => {
+    return Usuarios.findOne({where: {usuario:user, password:pass} });
 }
 
 module.exports = {
     CreateUser,
     getAllUser,
     getUserById,
-    getUserByUser
+    getUserByUser,
+    getUserXuserpass
 }

@@ -12,5 +12,15 @@ router.get(
     userController.ObtenerUsuarioXUser
 )
 
+router.post(
+    "/login",
+    userController.login
+)
+
+router.post(
+    "/validate",
+    userController.pruebaToken
+)
+
 
 module.exports = router
