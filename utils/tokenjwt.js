@@ -1,20 +1,22 @@
 const jwt  = require("jsonwebtoken")
 
-const generateToken = (codigoUsuario) => {
-    const token = jwt.sign({
-        //exp: '10s',//Math.floor(Date.now() / 1000) + (60 * 60),
-        data: codigoUsuario
+const generateToken = (InfoUser) => {
+    const token = jwt.sign({        
+        data: InfoUser
       }, 
-      'secret',
-      { expiresIn: '1m' }
+      InfoUser.claveIngreso,
+      { expiresIn: '12h' }
     )
     return token;
 }
 
 const validateToken = (token) => {
-    try {
-        return jwt.verify(token, 'secret')        
-    } catch (error) {
+    try {      
+        const infoUser = jwt.decode(token);
+        const tokenVerify = jwt.verify(token, infoUser.data.claveIngreso);
+        
+        return tokenVerify;        
+    } catch (error) {        
         return error
     }
 }

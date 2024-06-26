@@ -1,3 +1,5 @@
+const bcrypt = require("bcrypt");
+
 const generateUUID = () => {
   const randomBytes = new Uint8Array(16);
   crypto.getRandomValues(randomBytes);
@@ -13,9 +15,38 @@ const generateUUID = () => {
   return `${uuid.slice(0, 4).join('')}-${uuid.slice(4, 6).join('')}-${uuid.slice(6, 8).join('')}-${uuid.slice(8, 10).join('')}-${uuid.slice(10, 16).join('')}`;
 }
 
+//encripta una contraseña
+const encryptPassword = async (password) =>{
+  try {
+      const passwordEncrypted = await bcrypt.hash( password , saltRounds);
+      return passwordEncrypted;
+  } catch (error) {
+      throw (
+        error
+      )
+  }
+  
+}
+
+
+//primer paramatero es la contraseña en texto plano y el segundo parametro es la contraseña encriptada
+const comparePassword = async (password1, password2) => {
+  try {      
+      const match = await bcrypt.compare(password1, password2);      
+      return match;
+  } catch (error) {      
+      throw (
+        error
+      )
+  }
+  
+}
+
 //const uuid = generateUUID();
 //console.log(uuid); // Imprime un UUID como "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"
 
 module.exports = {
-    generateUUID
+    generateUUID,
+    encryptPassword,
+    comparePassword
 }
