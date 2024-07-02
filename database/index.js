@@ -6,11 +6,10 @@ const connection = new Sequelize(process.env.SERVER_DB_NAME, process.env.SERVER_
     dialect:  'postgres'    
 });
 
-
 connection.authenticate().then(()=>{
     console.log('Conectado correctamente a la base de datos',process.env.SERVER_DB_NAME);
 }).catch((error)=>{
-    console.error('Sin conexión a la base de datos:',process.env.SERVER_DB_NAME, error);
+    console.error('Error -> Sin conexión a la base de datos:',process.env.SERVER_DB_NAME);
 })
 
 module.exports = {

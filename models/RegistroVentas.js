@@ -20,6 +20,10 @@ const RegistroVentas = connection.define('RegistroVentas', {
     metodoPago: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    precioProducto:{
+        type: DataTypes.INTEGER,
+        allowNull: false
     }
 });
 

@@ -20,7 +20,7 @@ const CrearUsuario = async (req, res) => {
                 claveIngreso:codigo
             }
             const newUser = await Usuarios.CreateUser(dataUser);
-            return res.status(201).json({ message: "Usuario creado",user:newUser });
+            return res.status(200).json({ message: "Usuario creado",user:newUser });
         }
     } catch (error) {
         return res.status(500).json({ message: "Error al crear el usuario" });
@@ -46,11 +46,11 @@ const login = async (req,res) => {
         if(userExist){
             const comparePass = await comparePassword(password,userExist.password);
             if(!comparePass){
-                return res.status(400).json({ message: "Contraseña incorrecta" });
+                return res.status(402).json({ message: "Contraseña incorrecta" });
             }
             return res.status(200).json({ message: "Usuario encontrado",token,user:userExist });
         }else{
-            return res.status(400).json({ message: "El usuario no existe" });
+            return res.status(404).json({ message: "El usuario no existe" });
         }
     } catch (error) {
         return res.status(500).json({ message: "Error en el servidor",error });        

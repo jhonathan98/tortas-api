@@ -3,8 +3,46 @@ const { userController } = require("../controller")
 const { userValidator } = require("../validators")
 const router = express.Router()
 
+/** POST Methods */
+    /**
+     * @openapi
+     * '/api/user/register':
+     *  post:
+     *     tags:
+     *     - User Controller
+     *     summary: Register a user
+     *     requestBody:
+     *      required: true
+     *      content:
+     *        application/json:
+     *           schema:
+     *            type: object
+     *            required:
+     *              - usuario
+     *              - password
+     *              - correo
+     *            properties:
+     *              usuario:
+     *                type: string
+     *                default: johndoe
+     *              password:
+     *                type: string
+     *                min-caracter: 8
+     *                default: johnDoe20!@
+     *              correo:
+     *                type: string     *                
+     *                default: john@test.com
+     *     responses:
+     *      200:
+     *        description: User created
+     *      400:
+     *        description: User exist!
+     *      500:
+     *        description: Server Error
+     */
 router.post(
-    "/",
+    "/register",
+    [userValidator.createUserValidator],
     userController.CrearUsuario
 )
 
@@ -20,7 +58,7 @@ router.get(
      *  post:
      *     tags:
      *     - User Controller
-     *     summary: Create a user
+     *     summary: Login a user
      *     requestBody:
      *      required: true
      *      content:
@@ -28,26 +66,23 @@ router.get(
      *           schema:
      *            type: object
      *            required:
-     *              - username
-     *              - email
+     *              - usuario
      *              - password
      *            properties:
-     *              username:
+     *              usuario:
      *                type: string
-     *                default: johndoe 
-     *              email:
-     *                type: string
-     *                default: johndoe@mail.com
+     *                default: johndoe
      *              password:
      *                type: string
+     *                min-caracter: 8
      *                default: johnDoe20!@
      *     responses:
-     *      201:
-     *        description: Created
-     *      409:
-     *        description: Conflict
+     *      200:
+     *        description: User Found
+     *      402:
+     *        description: Password incorrect
      *      404:
-     *        description: Not Found
+     *        description: User Not Found
      *      500:
      *        description: Server Error
      */
