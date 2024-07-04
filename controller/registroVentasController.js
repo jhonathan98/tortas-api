@@ -15,7 +15,7 @@ const ObtenerRegistrosVentas = async (req,res) => {
                 data:[]
             })
         }
-    } catch (error) {   console.log(error)     
+    } catch (error) {   //console.log(error)     
         res.status(500).json({
             mensaje:"Error al obtener todos los registros",
             error
@@ -23,6 +23,30 @@ const ObtenerRegistrosVentas = async (req,res) => {
     }
 }
 
+const crearRegistroVentas = async (req, res) => {
+    try {
+        const registroVenta = {
+            Nombreproducto : req.body.Nombreproducto,
+            cantidadProducto : req.body.cantidadProducto,
+            precioProducto : req.body.precioProducto,
+            metodoPago : req.body.metodoPago
+        }
+
+        const registro = await registroVentas.createRegister(registroVenta);
+        
+        res.status(200).json({
+            mensaje:"Registro de venta creado",
+            data:registro
+        })
+    } catch (error) {
+        res.status(500).json({
+            mensaje:"Error al crear el registro de venta",
+            error
+        })
+    }
+}
+
 module.exports = {
-    ObtenerRegistrosVentas
+    ObtenerRegistrosVentas,
+    crearRegistroVentas
 }
