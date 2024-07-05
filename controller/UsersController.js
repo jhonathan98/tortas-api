@@ -40,10 +40,10 @@ const ObtenerUsuarioXUser = async (req, res) =>{
 
 const login = async (req,res) => {
     try {
-        const { user, password } = req.body;
-        const userExist = await Usuarios.getUserXuserpass(user,password);
-        const token = generateToken(userExist);
+        const { usuario, password } = req.body;
+        const userExist = await Usuarios.getUserXuser(usuario);        
         if(userExist){
+            const token = generateToken(userExist);
             const comparePass = await comparePassword(password,userExist.password);
             if(!comparePass){
                 return res.status(402).json({ message: "Contraseña incorrecta" });

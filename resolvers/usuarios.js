@@ -17,8 +17,8 @@ const getUserByUser = (user) => {
     return Usuarios.findOne({where: {usuario:user} });
 }
 
-const getUserXuserpass = (user,pass) => {
-    return Usuarios.findOne({where: {usuario:user, password:pass} });
+const getUserXuser = (user) => {
+    return Usuarios.findOne({where: {usuario:user} });
 }
 
 module.exports = {
@@ -26,5 +26,5 @@ module.exports = {
     getAllUser,
     getUserById,
     getUserByUser,
-    getUserXuserpass
+    getUserXuser
 }

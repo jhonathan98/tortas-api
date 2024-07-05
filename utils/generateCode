@@ -18,7 +18,8 @@ const generateUUID = () => {
 //encripta una contraseña
 const encryptPassword = async (password) =>{
   try {
-      const passwordEncrypted = await bcrypt.hash( password , saltRounds);
+      const saltRounds = 5;
+      const passwordEncrypted = await bcrypt.hash( password , saltRounds);      
       return passwordEncrypted;
   } catch (error) {
       throw (
@@ -31,7 +32,7 @@ const encryptPassword = async (password) =>{
 
 //primer paramatero es la contraseña en texto plano y el segundo parametro es la contraseña encriptada
 const comparePassword = async (password1, password2) => {
-  try {      
+  try {            
       const match = await bcrypt.compare(password1, password2);      
       return match;
   } catch (error) {      

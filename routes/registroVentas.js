@@ -4,7 +4,7 @@ const BearerToken = require("../middlewares/validateToken");
 const { registroVentasValidator } = require("../validators");
 const router = express.Router();
 
-/** POST Methods */
+/** GET Methods */
     /**
      * @openapi
      * '/api/registroventas/':
@@ -12,6 +12,8 @@ const router = express.Router();
      *     tags:
      *     - RegistroVentas Controller
      *     summary: Obtener todos los registros de las ventas
+     *     security:
+     *      - bearerAuth: []
      *     requestBody:
      *      required: true
      *      content:
@@ -45,6 +47,8 @@ router.get(
      *     tags:
      *     - RegistroVentas Controller
      *     summary: Crear un registro de ventas
+     *     security:
+     *      - bearerAuth: []
      *     requestBody:
      *      required: true
      *      content:

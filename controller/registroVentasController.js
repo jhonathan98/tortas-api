@@ -15,10 +15,10 @@ const ObtenerRegistrosVentas = async (req,res) => {
                 data:[]
             })
         }
-    } catch (error) {   //console.log(error)     
+    } catch (error) {
         res.status(500).json({
             mensaje:"Error al obtener todos los registros",
-            error
+            error:error
         })        
     }
 }
@@ -33,7 +33,7 @@ const crearRegistroVentas = async (req, res) => {
         }
 
         const registro = await registroVentas.createRegister(registroVenta);
-        
+
         res.status(200).json({
             mensaje:"Registro de venta creado",
             data:registro
@@ -41,7 +41,7 @@ const crearRegistroVentas = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             mensaje:"Error al crear el registro de venta",
-            error
+            error:error
         })
     }
 }

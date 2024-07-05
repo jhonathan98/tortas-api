@@ -1,8 +1,14 @@
-const RegistroVentas = require("../models/RegistroVentas")
+const RegistroVentas = require("../models/RegistroVentas");
+const { getPaginatedAndOrderedDynamic } = require("../utils/paginate");
 
-const getAll = () => {    
-    return RegistroVentas.findAll();
-    //return RegistroVentas.RegistroVentas.findAll()    
+const getAll = () => {
+    const ResultadoRegistroVentas = getPaginatedAndOrderedDynamic(
+        RegistroVentas,
+        {numPage:1,sizePage:2},
+        {filtersTable:[],filtersColumn:[]}
+    )    
+    //return RegistroVentas.findAll();
+    return ResultadoRegistroVentas
 }
 
 const createRegister = (registro) => {
