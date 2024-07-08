@@ -1,10 +1,10 @@
 const RegistroVentas = require("../models/RegistroVentas");
 const { getPaginatedAndOrderedDynamic } = require("../utils/paginate");
 
-const getAll = () => {
+const getAll = (numeroPagina=1,cantidadItems=2) => {
     const ResultadoRegistroVentas = getPaginatedAndOrderedDynamic(
         RegistroVentas,
-        {numPage:1,sizePage:2},
+        {numPage:numeroPagina,sizePage:cantidadItems},
         {filtersTable:[],filtersColumn:[]}
     )    
     //return RegistroVentas.findAll();

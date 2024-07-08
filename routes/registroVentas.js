@@ -35,7 +35,7 @@ const router = express.Router();
 
 router.get(
     '/',
-    [BearerToken],
+    [registroVentasValidator.ObtenerRegistroVentasValidator,BearerToken],
     registroVentasController.ObtenerRegistrosVentas
 )
 

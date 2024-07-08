@@ -2,7 +2,9 @@ const {registroVentas}  = require("../resolvers")
 
 const ObtenerRegistrosVentas = async (req,res) => {
     try {
-        const registros = await registroVentas.getAll();
+        const numeroPagina =  req.body.numeroPagina //pagina en donde se está ubicado
+        const cantidadItems = req.body.cantidadItems //cantidad de items por pagina
+        const registros = await registroVentas.getAll(numeroPagina,cantidadItems);
         
         if(registros){            
             res.status(200).json({
